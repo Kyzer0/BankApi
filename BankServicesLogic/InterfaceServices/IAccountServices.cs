@@ -1,4 +1,5 @@
-﻿using ModelDto.AccountDto;
+﻿using CostumeResponse;
+using ModelDto.AccountDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,6 @@ namespace BankServicesLogic.InterfaceServices
         /// </summary>
         /// <param name="addAccount"></param>
         /// <returns></returns>
-        AccountResponse AddAccount(AccountRequest addAccount);
+        ApiResponse<AccountResponse> AddAccount(AccountRequest addAccount);
     }
 }
