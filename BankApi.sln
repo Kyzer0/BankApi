@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankApi", "BankApi\BankApi.csproj", "{AD5905E3-CAB5-4B7E-A780-16A86F68EEDB}"
 EndProject
@@ -20,6 +20,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestBank", "TestBank", "{A241262E-9E4B-4FD7-9613-CF20BA07BC6E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBankingFunctionality", "TestBankingFunctionality\TestBankingFunctionality.csproj", "{0BD5B408-E848-4B3B-925D-06B35BF7961F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Response", "Response", "{B161489E-BD68-4FBE-9F30-8431A04025B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CostumeResponse", "CostumeResponse\CostumeResponse.csproj", "{D86EA811-B59E-4183-BB29-DAAF9D0E389D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +51,10 @@ Global
 		{0BD5B408-E848-4B3B-925D-06B35BF7961F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BD5B408-E848-4B3B-925D-06B35BF7961F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BD5B408-E848-4B3B-925D-06B35BF7961F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D86EA811-B59E-4183-BB29-DAAF9D0E389D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D86EA811-B59E-4183-BB29-DAAF9D0E389D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D86EA811-B59E-4183-BB29-DAAF9D0E389D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D86EA811-B59E-4183-BB29-DAAF9D0E389D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +64,7 @@ Global
 		{686EA4CF-EB84-465B-8876-509212EBD31A} = {BD499DA8-1F34-4C7B-A5DC-5D5669010A99}
 		{487BC6D6-24A9-4E1F-9BA8-62ED4E5F74F6} = {3A5B8153-F0C0-4FB6-8F64-7AD89FFFA37C}
 		{0BD5B408-E848-4B3B-925D-06B35BF7961F} = {A241262E-9E4B-4FD7-9613-CF20BA07BC6E}
+		{D86EA811-B59E-4183-BB29-DAAF9D0E389D} = {B161489E-BD68-4FBE-9F30-8431A04025B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {879C8059-5CD5-44DD-BB0E-E450F9A0B372}
