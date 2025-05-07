@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="InterfaceServices\" />
+    <ProjectReference Include="..\CostumeResponse\CostumeResponse.csproj" />
+    <ProjectReference Include="..\ModelDto\ModelDto.csproj" />
+    <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>
 
 </Project>
