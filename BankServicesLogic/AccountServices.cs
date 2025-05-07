@@ -1,4 +1,5 @@
 ﻿using BankServicesLogic.InterfaceServices;
+using CostumeResponse;
 using ModelDto.AccountDto;
 using Models;
 
@@ -11,7 +12,7 @@ namespace BankServicesLogic
         {
             _account = new List<Account>();
         }
-        public AccountResponse AddAccount(AccountRequest addAccount)
+        public ApiResponse<AccountResponse> AddAccount(AccountRequest addAccount)
         {
             throw new NotImplementedException();
         }
