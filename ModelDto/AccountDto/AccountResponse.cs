@@ -9,7 +9,6 @@ namespace ModelDto.AccountDto
     /// </summary>
     public class AccountResponse : IEquatable<Account>
     {
-        public Guid Id { get; set; }
         public string AccountNumber { get; set; }
         public string CostumerName { get; set; } 
         public string CostumerEmail { get; set; } 
@@ -28,7 +27,7 @@ namespace ModelDto.AccountDto
             if (other == null)
                 return false;
 
-            return Id == other.Id &&
+            return
                 AccountNumber == other.AccountNumber &&
                 CostumerName == other.CostumerName &&
                 CostumerEmail == other.CostumerEmail &&
@@ -43,7 +42,7 @@ namespace ModelDto.AccountDto
         //used this for faster retrival 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id,AccountNumber, CostumerName, CostumerEmail, Gender, BirthDay, CurrentBalance, CreatedAt);
+            return HashCode.Combine(AccountNumber, CostumerName, CostumerEmail, Gender, BirthDay, CurrentBalance, CreatedAt);
         }
     }
     /// <summary>
@@ -55,7 +54,6 @@ namespace ModelDto.AccountDto
         {
             return new AccountResponse
             {
-                Id = account.Id,
                 AccountNumber = account.AccountNumber,
                 CostumerName = account.CostumerName,
                 CostumerEmail = account.CostumerEmail,
