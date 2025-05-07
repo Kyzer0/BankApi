@@ -5,7 +5,8 @@
     /// </summary>
     public class Account
     {
-        public Guid CostumerKey { get; set; }
+        public Guid Id { get; set; }
+        public string AccountNumber { get; set; }
         public string CostumerName { get; set; } 
         public string CostumerEmail { get; set; } 
         public string? Gender { get; set; }
