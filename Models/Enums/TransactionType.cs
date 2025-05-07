@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModelDto.Enums
+namespace Models.Enums
 {
-    internal enum TransactionType
+    public enum TransactionType
     {
         Deposit,
         Withdrawal,

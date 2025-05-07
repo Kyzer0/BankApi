@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ModelDto.Enums
+namespace Models.Enums
 {
-    internal enum GenderOptions
+    public enum GenderOptions
     {
         Male,Female,Others
     }

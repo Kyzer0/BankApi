@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using Models;
+using Models.Enums;
 
-namespace ModelDto
+namespace ModelDto.AccountDto
 {
     /// <summary>
     /// Creating Dto for Account. Use for HTTPOST, HTTPATCH, HTTPUT
@@ -18,20 +14,18 @@ namespace ModelDto
         [EmailAddress]
         [Required(ErrorMessage = "Email is Required")]
         public string CostumerEmail { get; set; } = string.Empty;
-        public string? Gender { get; set; }
+        public GenderOptions? Gender { get; set; }
         public DateTime? BirthDay { get; set; }
 
-
-        public Account MapAccountRequest()
+        public Account MapAccountModel () // Fully qualify the 'Account' type to avoid ambiguity
         {
             return new Account
             {
-                CostumerName = this.CostumerName,
-                CostumerEmail = this.CostumerEmail,
-                Gender = (Gender != null)? Gender.ToString() : "Invalid Null",
-                BirthDay = this.BirthDay,
+                CostumerName = CostumerName,
+                CostumerEmail = CostumerEmail,
+                Gender = Gender != null ? Gender.ToString() : "Invalid Null",
+                BirthDay = BirthDay,
             };
-
         }
     }
 }

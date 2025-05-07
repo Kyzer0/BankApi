@@ -1,4 +1,4 @@
-﻿namespace ModelDto
+﻿namespace Models
 {
     /// <summary>
     /// Models for Costumer Account
