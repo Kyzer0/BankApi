@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BankServicesLogic.InterfaceServices
 {
-    internal interface IAccountServices
+    public interface IAccountServices
     {
         /// <summary>
         /// Add Account for users
