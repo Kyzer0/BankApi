@@ -3,15 +3,20 @@ using BankServicesLogic.InterfaceServices;
 using ModelDto.AccountDto;
 using TestBankingFunctionality.Helpers;
 using Models.Enums;
+using System.Resources;
+using Xunit.Abstractions;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 namespace TestBankingFunctionality
 {
-    public class UnitTest1
+    public class AccountTest
     {
         private readonly IAccountServices _account;
-        public UnitTest1()
+        private readonly ITestOutputHelper _testOutput;
+        public AccountTest(ITestOutputHelper testOutput)
         {
             _account = new AccountServices();
+            _testOutput = testOutput;
         }
         #region
         [Fact]
@@ -19,7 +24,7 @@ namespace TestBankingFunctionality
         {
             var result = _account.AddAccount(null);
 
-            AsserApiHelpers.AsserApiError(result, "Account Cannot be null", "Null request received");
+            AsserApiHelpers.AsserApiError(result, "Validation Failed", "Null request received");
         }
         [Fact]
         public void AddAccount_EmptyAccountName_CheckWhenEmpty()
@@ -33,7 +38,7 @@ namespace TestBankingFunctionality
             };
             var added_account = _account.AddAccount(addAccount);
 
-            AsserApiHelpers.AsserApiError(added_account, "Name is Cannot be Empty", "Name is Required");
+            AsserApiHelpers.AsserApiError(added_account, "Validation Failed", "Name is Required");
         }
         [Fact]
         public void AddAccount_EmptyAccountEmail_CheckWhenEmpty()
@@ -47,8 +52,30 @@ namespace TestBankingFunctionality
             };
             var added_account = _account.AddAccount(addAccount);
 
-            AsserApiHelpers.AsserApiError(added_account, "Email is Cannot be Empty", "Email is Required");
+            AsserApiHelpers.AsserApiError(added_account, "Validation Failed", "Email is Required");
         }
+        [Fact]
+        public void ValidateEmail_WhenIs_Duplicated()
+        {
+            var addAccount = new AccountRequest()
+            {
+                CostumerName = "sadasdassssd",
+                CostumerEmail = "maria@gmail.com",
+                BirthDay = DateTime.Parse("2022-11-11"),
+                Gender = GenderOptions.Male
+            };
+            var addAccount2 = new AccountRequest()
+            {
+                CostumerName = "sadasdasssd",
+                CostumerEmail = "maria@gmail.com",
+                BirthDay = DateTime.Parse("2022-11-11"),
+                Gender = GenderOptions.Male
+            };
+            var added_account = _account.AddAccount(addAccount);
+            var added_account2 = _account.AddAccount(addAccount2);
+
+            AsserApiHelpers.AsserApiError(added_account2, "Duplicate Email", "An Account with this Email  Already Exist");
+}
         [Fact]
         public void Add_ValidAccount_ReturnAssertResult()
         {
