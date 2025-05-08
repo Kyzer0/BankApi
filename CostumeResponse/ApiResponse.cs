@@ -6,7 +6,7 @@
     public class ApiResponse<T>
     {
         public bool isSuccess { get; set; }
-        public string ErrorMessage { get; set; } = string.Empty;
+        public string Message { get; set; }
         public T? Data { get; set; }
         public List<string> Errors { get; set; } = new();
     }
