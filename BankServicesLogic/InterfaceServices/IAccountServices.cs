@@ -23,5 +23,12 @@ namespace BankServicesLogic.InterfaceServices
         /// </summary>
         /// <returns>List of accounts response</returns>
         List<ApiResponse<AccountResponse>> ListAllAccounts();
+
+        /// <summary>
+        /// Get Account Id
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns>Return Get account by ID</returns>
+        ApiResponse<AccountResponse> GetAccountID(Guid? Id);
     }
 }

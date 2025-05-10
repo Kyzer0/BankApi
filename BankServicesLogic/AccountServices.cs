@@ -49,7 +49,9 @@ namespace BankServicesLogic
                 return response;
             }
             var mapAccount = addAccount.MapAccountModel();
+            mapAccount.Id = new Guid(); // generating new Id whenever you are adding Account
             _account.Add(mapAccount);
+
 
             response.isSuccess = true;
             response.Message = "Successfully Added";
@@ -59,9 +61,46 @@ namespace BankServicesLogic
 
         }
 
+        public ApiResponse<AccountResponse> GetAccountID(Guid? Id)
+        {
+            var response = new ApiResponse<AccountResponse>();
+
+            if (Id == Guid.Empty)
+            {
+                response.isSuccess = false;
+                response.Message = "Validation Failed";
+                response.Errors.Add("Account Id Cannot be Empty");
+                return response;
+            } 
+            var findId = _account.FirstOrDefault(x => x.Id == Id);
+
+            if (findId == null)
+            {
+                response.isSuccess = false;
+                response.Message = "Validation Failed";
+                response.Errors.Add("Account Id Cannot be Found");
+                return response;
+            }
+
+            response.isSuccess = true;
+            response.Message = "ID is Retrive completly";
+            response.Data = new AccountResponse();
+
+            return response;
+        }
+
         public List<ApiResponse<AccountResponse>> ListAllAccounts()
         {
-            throw new NotImplementedException();
+            var response = new ApiResponse<AccountResponse>();
+            //container
+            List<ApiResponse<AccountResponse>> apiResponsesList = new();
+            response.isSuccess = true;
+            response.Message = "Successfully Display All Accounts";
+            response.Data = new AccountResponse();
+
+            apiResponsesList.Add(response);
+
+            return apiResponsesList;
         }
     }
 }
