@@ -9,6 +9,8 @@ namespace ModelDto.AccountDto
     /// </summary>
     public class AccountResponse : IEquatable<Account>
     {
+        [Key]
+        public Guid ID { get; set; }
         public string AccountNumber { get; set; }
         public string CostumerName { get; set; } 
         public string CostumerEmail { get; set; } 
@@ -28,6 +30,7 @@ namespace ModelDto.AccountDto
                 return false;
 
             return
+                ID == other.Id &&
                 AccountNumber == other.AccountNumber &&
                 CostumerName == other.CostumerName &&
                 CostumerEmail == other.CostumerEmail &&
@@ -54,6 +57,7 @@ namespace ModelDto.AccountDto
         {
             return new AccountResponse
             {
+                ID = account.Id,
                 AccountNumber = account.AccountNumber,
                 CostumerName = account.CostumerName,
                 CostumerEmail = account.CostumerEmail,

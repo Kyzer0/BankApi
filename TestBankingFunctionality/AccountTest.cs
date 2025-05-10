@@ -7,6 +7,7 @@ using System.Resources;
 using Xunit.Abstractions;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using CostumeResponse;
+using Models;
 
 namespace TestBankingFunctionality
 {
@@ -149,6 +150,46 @@ namespace TestBankingFunctionality
                 Assert.Contains(accounts, lisAccount);
             }
         }
+        #endregion
+
+        #region Get Account ID test
+        [Fact]
+        public void GetAccountByID_NullId_ReturnResponseType()
+        {
+            var account = _account.GetAccountID(null);
+
+            AsserApiHelpers.AsserApiError(account,"Validation Failed","Account Id Cannot be Found");
+
+        }
+         // Test to ensure that when a non-existent ID is passed, 
+        [Fact]
+        public void GetAccountByID_NonExistentId_ReturnResponseType()
+        {
+            // Arrange
+            Guid? nonExistentId = Guid.Parse("{5C9B8205-42B4-4C28-8302-BFEB50D32CDB}");
+            var account = _account.GetAccountID(nonExistentId);
+            AsserApiHelpers.AsserApiError(account,"Validation Failed","Account Id Cannot be Found");
+        }
+         // Test to verify that a valid ID returns the correct PersonResponseDto
+        [Fact]
+        public void GetAccountByID_ValidId_ReturnsResponseType()
+        {
+            var add_new_Account = AddedAccount.AddAccount();
+            Assert.NotNull(add_new_Account); // Ensure the account request is not null
+
+            var addingAccount = _account.AddAccount(add_new_Account);
+            Assert.NotNull(addingAccount); // Ensure the response is not null
+            Assert.True(addingAccount.isSuccess); // Ensure the account was added successfully
+            Assert.NotNull(addingAccount.Data); // Ensure the response contains data
+            Assert.NotEqual(Guid.Empty, addingAccount.Data.ID); // Ensure the ID is valid
+
+            var getID = _account.GetAccountID(addingAccount.Data.ID);
+            Assert.NotNull(getID); // Ensure the response is not null
+            Assert.True(getID.isSuccess); // Ensure the account was retrieved successfully
+
+            AsserApiHelpers.AsserApiSuccess(getID, "ID is Retrieved completely");
+        }
+
         #endregion
     }
 }
