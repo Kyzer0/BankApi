@@ -47,6 +47,12 @@ namespace ModelDto.AccountDto
         {
             return HashCode.Combine(AccountNumber, CostumerName, CostumerEmail, Gender, BirthDay, CurrentBalance, CreatedAt);
         }
+
+        public override string ToString()
+        {
+            return $"ID {ID}, AccountNumber {AccountNumber}, CostumerEmail {CostumerEmail}, Gender {Gender}" +
+                $"Age {Age}, CurrentBalance {CurrentBalance},Created At {CreatedAt} ";
+        }
     }
     /// <summary>
     /// created for returning response for AccountResponse

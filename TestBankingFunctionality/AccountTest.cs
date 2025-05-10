@@ -103,53 +103,38 @@ namespace TestBankingFunctionality
 
             var add = _account.AddAccount(addedAccount);
 
-            var result = _account.ListAllAccounts();
+            var result = _account.GetListAccount();
 
             AsserApiHelpers.AsserApiSuccess(result, "Successfully Display All Accounts");
         }
         [Fact]
         public void Check_GetAllAccount_IfWorking()
         {
-             var addedAccount = AddedAccount.AddAccount();
-             var addedAccount2 = AddedAccount.AddAccount();
-             var addedAccount3 = AddedAccount.AddAccount();
+            // Arrange
+            var addedAccount1 = AddedAccount.AddAccount1();
+            var addedAccount2 = AddedAccount.AddAccount2();
+            var addedAccount3 = AddedAccount.AddAccount();
 
-            var add = _account.AddAccount(addedAccount);
+            _account.AddAccount(addedAccount1);
+            _account.AddAccount(addedAccount2);
+            _account.AddAccount(addedAccount3);
 
-            //listing all Accounts 
-            List<AccountRequest> accountRequestsList = new List<AccountRequest>()
-            {
-                addedAccount,addedAccount2,addedAccount3
-            };
+            // Act
+            var actualResponse = _account.GetListAccount();
 
-            var listAccounts = _account.ListAllAccounts();
+            // Assert
+            AsserApiHelpers.AsserApiSuccess(actualResponse, "Successfully Display All Accounts");
 
-            //container for list
-            List<ApiResponse<AccountResponse>> responses_list_container = new();
+            Assert.NotNull(actualResponse.Data);
+            Assert.Equal(3, actualResponse.Data.Count);
 
-            //Adding to list 
-            foreach(var list in accountRequestsList)
-            {
-                var account_list_Add = _account.AddAccount(list);
-                responses_list_container.Add(account_list_Add);
-            }
-
-            _testOutput.WriteLine("Expected Values");
-            foreach(var account in responses_list_container)
+            _testOutput.WriteLine("Actual Values:");
+            foreach (var account in actualResponse.Data)
             {
                 _testOutput.WriteLine(account.ToString());
             }
-
-            var lisAccount = _account.ListAllAccounts();
-
-            //assert
-            _testOutput.WriteLine("Actuall Values"); 
-            foreach(var accounts in lisAccount)
-            {
-                AsserApiHelpers.AsserApiSuccess(accounts, "Successfully Display All Accounts");
-                Assert.Contains(accounts, lisAccount);
-            }
         }
+
         #endregion
 
         #region Get Account ID test

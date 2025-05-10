@@ -49,13 +49,14 @@ namespace BankServicesLogic
                 return response;
             }
             var mapAccount = addAccount.MapAccountModel();
-            mapAccount.Id = new Guid(); // generating new Id whenever you are adding Account
+            mapAccount.Id = Guid.NewGuid(); // generating new KEy Id whenever you are adding Account
+            mapAccount.AccountNumber = AddAccountGenerator.GenerateRandomID(); //generate new account ID
             _account.Add(mapAccount);
 
 
             response.isSuccess = true;
             response.Message = "Successfully Added";
-            response.Data = new AccountResponse();
+            response.Data = mapAccount.GetAccountResponse();
 
             return response;
 
@@ -83,24 +84,22 @@ namespace BankServicesLogic
             }
 
             response.isSuccess = true;
-            response.Message = "ID is Retrive completly";
+            response.Message = "ID is Retrieved completely";
             response.Data = new AccountResponse();
 
             return response;
         }
 
-        public List<ApiResponse<AccountResponse>> ListAllAccounts()
+        public ApiResponse<List<AccountResponse>> GetListAccount()
         {
-            var response = new ApiResponse<AccountResponse>();
-            //container
-            List<ApiResponse<AccountResponse>> apiResponsesList = new();
-            response.isSuccess = true;
-            response.Message = "Successfully Display All Accounts";
-            response.Data = new AccountResponse();
+            var accountResponses = _account.Select(temp => temp.GetAccountResponse()).ToList();
 
-            apiResponsesList.Add(response);
-
-            return apiResponsesList;
+            return new ApiResponse<List<AccountResponse>>
+            {
+                isSuccess = true,
+                Message = "Successfully Display All Accounts",
+                Data = accountResponses
+            };
         }
     }
 }
