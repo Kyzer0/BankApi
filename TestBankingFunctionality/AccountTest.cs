@@ -6,6 +6,7 @@ using Models.Enums;
 using System.Resources;
 using Xunit.Abstractions;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+using CostumeResponse;
 
 namespace TestBankingFunctionality
 {
@@ -91,6 +92,63 @@ namespace TestBankingFunctionality
             AsserApiHelpers.AsserApiSuccess(added_account, "Successfully Added");
         }
 
+        #endregion
+
+        #region List of Account Test
+        [Fact]
+        public void ListPersons_AccountsAdded_ReturnsAllAccounts()
+        {
+            var addedAccount = AddedAccount.AddAccount();
+
+            var add = _account.AddAccount(addedAccount);
+
+            var result = _account.ListAllAccounts();
+
+            AsserApiHelpers.AsserApiSuccess(result, "Successfully Display All Accounts");
+        }
+        [Fact]
+        public void Check_GetAllAccount_IfWorking()
+        {
+             var addedAccount = AddedAccount.AddAccount();
+             var addedAccount2 = AddedAccount.AddAccount();
+             var addedAccount3 = AddedAccount.AddAccount();
+
+            var add = _account.AddAccount(addedAccount);
+
+            //listing all Accounts 
+            List<AccountRequest> accountRequestsList = new List<AccountRequest>()
+            {
+                addedAccount,addedAccount2,addedAccount3
+            };
+
+            var listAccounts = _account.ListAllAccounts();
+
+            //container for list
+            List<ApiResponse<AccountResponse>> responses_list_container = new();
+
+            //Adding to list 
+            foreach(var list in accountRequestsList)
+            {
+                var account_list_Add = _account.AddAccount(list);
+                responses_list_container.Add(account_list_Add);
+            }
+
+            _testOutput.WriteLine("Expected Values");
+            foreach(var account in responses_list_container)
+            {
+                _testOutput.WriteLine(account.ToString());
+            }
+
+            var lisAccount = _account.ListAllAccounts();
+
+            //assert
+            _testOutput.WriteLine("Actuall Values"); 
+            foreach(var accounts in lisAccount)
+            {
+                AsserApiHelpers.AsserApiSuccess(accounts, "Successfully Display All Accounts");
+                Assert.Contains(accounts, lisAccount);
+            }
+        }
         #endregion
     }
 }

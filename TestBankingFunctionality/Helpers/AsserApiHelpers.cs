@@ -36,5 +36,13 @@ namespace TestBankingFunctionality.Helpers
             Assert.True(result.isSuccess);
             Assert.Equal(expectedMessage, result.Message);
         }
+        public static void AsserApiSuccess<T>(List<ApiResponse<T>> result, string expectedMessage)
+        {
+            // Ensure all responses in the list are successful
+            Assert.All(result, res => Assert.True(res.isSuccess));
+
+            // Ensure all messages in the list match the expected message
+            Assert.All(result, res => Assert.Equal(expectedMessage, res.Message));
+        }
     }
 }
