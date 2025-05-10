@@ -26,7 +26,7 @@ namespace BankServicesLogic
             if(addAccount == null)
             {
                 response.isSuccess = false; 
-                response.Message = "Account Cannot be null";
+                response.Message = "Validation Failed";
                 response.Errors.Add("Null request received");
                 return response;
             }
@@ -57,6 +57,11 @@ namespace BankServicesLogic
 
             return response;
 
+        }
+
+        public List<ApiResponse<AccountResponse>> ListAllAccounts()
+        {
+            throw new NotImplementedException();
         }
     }
 }

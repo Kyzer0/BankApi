@@ -9,6 +9,12 @@ namespace BankServicesLogic.Helpers
 {
     internal class ModelValidation
     {
+        /// <summary>
+        /// Validate Request
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items"></param>
+        /// <returns></returns>
         internal static List<string> ValidateRequest<T>(T items)
         {
             ValidationContext validationContext = new ValidationContext(items);
@@ -21,7 +27,7 @@ namespace BankServicesLogic.Helpers
         internal static void ValidateId(Guid? Id)
         {
             if(Id == null)
-                throw new ArgumentNullException(nameof(Id), "Id cannot be null");
+                
             if (Id == Guid.Empty)
                 throw new ArgumentException("Id cannot be empty", nameof(Id));
         }

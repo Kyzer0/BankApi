@@ -15,7 +15,13 @@ namespace BankServicesLogic.InterfaceServices
         /// Add Account for users
         /// </summary>
         /// <param name="addAccount"></param>
-        /// <returns></returns>
+        /// <returns>Add Account response</returns>
         ApiResponse<AccountResponse> AddAccount(AccountRequest addAccount);
+
+        /// <summary>
+        /// List of All Accounts
+        /// </summary>
+        /// <returns>List of accounts response</returns>
+        List<ApiResponse<AccountResponse>> ListAllAccounts();
     }
 }
